@@ -1,0 +1,161 @@
+@font-face {
+	font-family: 'LCARS';
+	src: url('../fonts/lcars.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@import "bootstrap.less";
+@import "flexbox.less";
+
+/* Variables */
+@navbar-font-size: 32px;
+/* /Variables */
+
+/* Mixins */
+.replacetext(@text, @font-size) {
+	font-size: 0;
+	
+	&:before {
+		content: @text;
+		font-size: @font-size;
+	}
+}
+
+.colorscheme(@primary, @bg: none, @accent: @primary) {
+	.navbar {
+		color: @primary;
+		
+		.corner {
+			background: @accent;
+		}
+		
+		.ellipse, .bar {
+			background: @primary;
+		}
+	}
+}
+
+.colorscheme(@primary, @bg, @accent: @primary) {
+	body {
+		background-color: @bg;
+	}
+}
+
+.locationtext(@text) {
+	.navbar .location {
+		.replacetext(@text, @navbar-font-size);
+	}
+}
+/* /Mixins */
+
+html {
+	.square(100%);
+	
+	cursor: default;
+	
+	overflow-x: hidden;
+	
+	user-select: none;
+}
+
+body {
+	.square(100%);
+	
+	padding: @navbar-height 0;
+	
+	background: url(../img/Flag_of_the_United_Federation_of_Planets.svg) center center no-repeat fixed #000;
+	background-size: contain;
+}
+
+.colorscheme(#fff, #000);
+
+html.offline {
+	.colorscheme(#333, #000);
+	
+	.navbar {
+		.online-status {
+			.replacetext("Offline", @navbar-font-size);
+		}
+		
+		.location {
+			display: none;
+		}
+	}
+}
+
+html.red-alert {
+	.colorscheme(#f00, #600);
+	.locationtext("Red Alert");
+}
+
+html.red-alert.secondary {
+	.colorscheme(#600);
+}
+
+html.blue-alert {
+	.colorscheme(#0182c6, #347);
+	.locationtext("Blue Alert");
+}
+
+html.blue-alert.secondary {
+	.colorscheme(#3b5998);
+}
+
+html.yellow-alert {
+	.colorscheme(#fbd22e);
+	.locationtext("Yellow Alert");
+}
+
+.navbar {
+	@obj-height: 25px;
+	
+	font-family: LCARS, @font-family-sans-serif;
+	font-size: @navbar-font-size;
+	line-height: 1;
+	
+	text-transform: uppercase;
+	
+	.flexbox();
+	.align-items(center);
+	
+	// > *
+	div {
+		margin: 0 3px;
+		
+		.flex-shrink(0);
+	}
+	
+	.corner {
+		@border-radius: @obj-height;
+		
+		.size(20px, @obj-height);
+		
+		&:first-child {
+			border-top-left-radius: @border-radius;
+			border-bottom-left-radius: @border-radius;
+		}
+		
+		&:last-child {
+			border-top-right-radius: @border-radius;
+			border-bottom-right-radius: @border-radius;
+		}
+	}
+	
+	.ellipse {
+		.square(10px);
+		
+		border-radius: 5px;
+	}
+	
+	.bar {
+		height: @obj-height;
+		
+		.flex(2013, 1, 1, 100%);
+	}
+	
+	.text {
+		//height: @obj-height;
+		margin-top: 2px;
+	}
+}

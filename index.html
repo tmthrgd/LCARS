@@ -1,0 +1,90 @@
+<!doctype html>
+<!--<html lang=en manifest=game.appcache class="no-js offline">-->
+<html lang=en class="no-js offline">
+<head>
+	<meta charset=utf-8>
+	<title>LCARS</title>
+	<meta name=viewport content="width=device-width,user-scalable=no,minimum-scale=1.0,maximum-scale=1.0">
+	<link rel="shortcut icon" href="img/DS9 Voyager.ico">
+	<!--IsNode--><link rel=stylesheet href=css/node.css><!--/IsNode-->
+	<link rel=stylesheet/less href=less/style.less>
+	<!--IsNode--><script src=js/node.js></script><!--/IsNode-->
+	<script defer src=js/less-1.5.0.min.js></script>
+	<script defer src=js/prefixfree.min.js></script>
+	<script defer src=js/prefixfree.dynamic-dom.min.js></script>
+	<script defer src=js/modernizr-latest.js></script>
+</head>
+<body style=display:flex;flex-direction:column>
+	<div class="navbar navbar-inverse navbar-fixed-top" role=navigation>
+		<div class=corner></div>
+		<div class=text title="Library Computer Access/Retrieval System">LCARS 78656</div>
+		<div class=ellipse></div>
+		<div class="text online-status">Online</div>
+		<div class=bar></div>
+		<div class="text time">0:00 PM</div>
+		<div class=corner></div>
+	</div>
+	
+	<div class=hidden style=display:flex;flex-direction:column;flex-grow:1>
+		<div style=flex-grow:1></div>
+		
+		<div style="display:flex;justify-content:space-around;background:#eee;padding:5px 0 2.5px">
+			<a href=# onclick=setAlert(1);return!1 style=flex-basis:24% class="btn btn-sm btn-danger">Activate Red Alert</a>
+			<a href=# onclick=setAlert(2);return!1 style=flex-basis:24% class="btn btn-sm btn-primary">Activate Blue Alert</a>
+			<a href=# onclick=setAlert(3);return!1 style=flex-basis:24% class="btn btn-sm btn-warning">Activate Yellow Alert</a>
+			<a href=# onclick=setAlert(0);return!1 style=flex-basis:24% class="btn btn-sm btn-default">Deactivate Alert</a>
+		</div>
+		<div style="display:flex;justify-content:space-around;background:#eee;padding:2.5px 0 5px">
+			<a href=# onclick=silenceAlert();return!1 style=flex-basis:24% class="btn btn-xs btn-default">Silence Alert</a>
+		</div>
+		
+		<script>
+		!function () {
+			var div = document.scripts[document.scripts.length - 1].parentNode;
+			
+			document.addEventListener('keydown', function (e) {
+				switch (e.which) {
+					case 66: // b
+						setAlert(2);
+						break;
+					case 68: // d
+						setAlert(0);
+						break;
+					case 82: // r
+						setAlert(1);
+						break;
+					case 83: // s
+						silenceAlert();
+						break;
+					case 88: // x
+						div.classList.toggle('hidden');
+						break;
+					case 89: // y
+						setAlert(3);
+						break;
+				}
+			}, false);
+		}();
+		</script>
+	</div>
+	
+	<div class="navbar navbar-inverse navbar-fixed-bottom" role=navigation>
+		<div class=corner></div>
+		<div class=bar></div>
+		<div class="text location">Dashboard</div>
+		<div class=corner></div>
+	</div>
+	
+	<audio class="hidden Voyager_Red_alert" autobuffer>
+		<source src=audio/Voyager_Red_alert.wav type=audio/wav>
+		<source src=audio/Voyager_Red_alert.ogg type=audio/ogg>
+		<source src=audio/Voyager_Red_alert.aac type=audio/mp4>
+		<source src=audio/Voyager_Red_alert.mp3 type=audio/mpeg>
+	</audio>
+	
+	<script src=js/jquery.min.js></script>
+	<script src=js/bootstrap.min.js></script>
+	<script src=js/moment.min.js></script>
+	<script src=js/script.js></script>
+</body>
+</html>

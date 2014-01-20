@@ -1,0 +1,27 @@
+{
+	"name": "lcars",
+	"main": "index.html",
+	
+	"js-flags": "--harmony",
+	"chromium-args": "--enable-threaded-compositing",
+	
+	"window": {
+		"icon": "img/DS9 Voyager.png",
+		
+		"height": 550,
+		"width": 700,
+		
+		"min_height": 400,
+		"min_width": 500,
+		
+		"fullscreen": true,
+		"__always-on-top": true,
+		
+		"toolbar": false,
+		"frame": false,
+		
+		"__kiosk": true,
+		
+		"__show": false
+	}
+}

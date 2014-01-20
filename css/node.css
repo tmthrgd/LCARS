@@ -1,0 +1,8 @@
+.navbar {
+	-webkit-app-region: drag;
+	-webkit-user-select: none;
+}
+
+.modal.select .modal-body {
+	-webkit-user-select: text;
+}
